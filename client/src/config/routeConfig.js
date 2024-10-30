@@ -9,7 +9,7 @@ import App from "../App";
 import PrivateRoute from "../components/PrivateRoute";
 import PublicRoute from "../components/PublicRoute";
 //auth routes
-import HomeScreen from "../screens/auth/Home";
+import DashboardScreen from "../screens/auth/Dashboard";
 //unauth routes
 import LoginScreen from "../screens/unauth/Login";
 import RegisterScreen from "../screens/unauth/Register";
@@ -24,7 +24,7 @@ export const router = createBrowserRouter(
       </Route>
       {/* private routes */}
       <Route path="" element={<PrivateRoute />}>
-        <Route index={true} path="/" element={<HomeScreen />} />
+        <Route index={true} path="/" element={<DashboardScreen />} />
       </Route>
       <Route path="*" element={<h1>404 Component</h1>} />
     </Route>
