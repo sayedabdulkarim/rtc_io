@@ -4,6 +4,8 @@ import ReactDOM from "react-dom/client";
 // import "./styles/modules/index.scss";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./config/routeConfig";
+// import AppRoutes from "./config/routeConfig";
+
 import store from "./store";
 import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
