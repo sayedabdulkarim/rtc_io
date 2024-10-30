@@ -18,7 +18,7 @@ export const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       {/* public routes */}
       <Route element={<PublicRoute />}>
-        <Route path="/auth" element={<UnAuthScreen />} />
+        <Route path="/register" element={<UnAuthScreen />} />
       </Route>
       {/* private routes */}
       <Route path="" element={<PrivateRoute />}>
