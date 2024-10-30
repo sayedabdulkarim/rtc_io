@@ -6,8 +6,8 @@ import {
 } from "react-router-dom";
 
 import App from "../App";
-import PrivateRoute from "../components/PrivateRoute";
-import PublicRoute from "../components/PublicRoute";
+import PrivateRoute from "../shared/PrivateRoute";
+import PublicRoute from "../shared/PublicRoute";
 //auth routes
 import DashboardScreen from "../screens/auth/Dashboard";
 //unauth routes
