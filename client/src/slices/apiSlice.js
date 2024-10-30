@@ -7,7 +7,7 @@ const getCsrfToken = () => {
 };
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "server endpoint",
+  baseUrl: "http://localhost:5002/",
   credentials: "include", // Necessary for cookies to be included
   prepareHeaders: (headers) => {
     const csrfToken = getCsrfToken();
