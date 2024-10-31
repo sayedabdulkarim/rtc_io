@@ -18,7 +18,14 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    getPrivateData: builder.query({
+      query: () => `${USERS_URL}/test`, // This sets up the URL for the GET request
+    }),
   }),
 });
 
-export const { useLoginUserMutation, useRegisterUserMutation } = userApiSlice;
+export const {
+  useLoginUserMutation,
+  useRegisterUserMutation,
+  useGetPrivateDataQuery,
+} = userApiSlice;
