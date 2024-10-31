@@ -22,6 +22,8 @@ const RegisterPage = ({ register }) => {
       username,
     };
 
+    console.log(userDetails, " det");
+
     // register(userDetails, history);
   };
 
