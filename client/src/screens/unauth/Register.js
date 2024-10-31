@@ -32,9 +32,9 @@ const RegisterPage = ({ register }) => {
     try {
       const res = await registerUser(userDetails).unwrap();
       console.log(res, " resss");
-      localStorage.setItem("jwtToken", res.userDetails.token);
+      localStorage.setItem("jwtToken", res?.userDetails?.token);
       // handleShowAlert(dispatch, "success", res?.message);
-      dispatch(setCredentials({ ...res }));
+      dispatch(setCredentials({ ...res?.userDetails }));
       // navigate("/");
     } catch (err) {
       //   handleShowAlert(dispatch, "error", err?.data?.message);
