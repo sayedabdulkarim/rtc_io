@@ -27,7 +27,7 @@ const alertSlice = createSlice({
 export const { setAlert, resetAlert, testAlert } = alertSlice.actions;
 
 export const showAlertWithTimeout =
-  (type, content, timeout = 2000) =>
+  (type, content, timeout = 6000) =>
   (dispatch) => {
     console.log("hello");
     dispatch(setAlert({ type, content }));

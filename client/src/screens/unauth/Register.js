@@ -7,6 +7,7 @@ import RegisterPageFooter from "../../shared/components/register/RegisterPageFoo
 import { validateRegisterForm } from "../../shared/utils/validators";
 import { useRegisterUserMutation } from "../../slices/auth/authApiSlice";
 import { setCredentials } from "../../slices/auth/authSlice";
+import AlertNotification from "../../shared/components/AlertNotification";
 
 const RegisterPage = ({ register }) => {
   //misc
@@ -73,6 +74,7 @@ const RegisterPage = ({ register }) => {
         handleRegister={handleRegister}
         isFormValid={isFormValid}
       />
+      <AlertNotification />
     </AuthBox>
   );
 };

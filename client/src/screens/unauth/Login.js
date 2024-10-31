@@ -7,6 +7,7 @@ import LoginPageInputs from "../../shared/components/LoginPage/LoginPageInputs";
 import { useLoginUserMutation } from "../../slices/auth/authApiSlice";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../slices/auth/authSlice";
+import { handleShowAlert } from "../../shared/utils/commonHelper";
 
 const LoginPage = ({ login }) => {
   //misc
@@ -34,11 +35,12 @@ const LoginPage = ({ login }) => {
       const res = await loginUser(userDetails).unwrap();
       console.log(res, " resss");
       localStorage.setItem("jwtToken", res?.userDetails?.token);
-      // handleShowAlert(dispatch, "success", res?.message);
+      handleShowAlert(dispatch, "success", res?.message);
+      // showAlertWithTimeout("success", res?.message, 6000);
       dispatch(setCredentials({ ...res?.userDetails }));
       // navigate("/");
     } catch (err) {
-      // handleShowAlert(dispatch, "error", err?.data?.message);
+      handleShowAlert(dispatch, "error", err?.data);
       console.log(err, " errr");
     }
 
