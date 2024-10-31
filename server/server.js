@@ -11,7 +11,19 @@ const PORT = process.env.PORT || process.env.API_PORT;
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+//
+// Increase the limit for parsed data (JSON)
+app.use(express.json({ limit: "50mb" })); // Adjust '50mb' as needed
+// Increase the limit for parsed data (URL-encoded)
+app.use(express.urlencoded({ limit: "50mb", extended: true })); // Adjust '50mb' as needed
+
+const corsOptions = {
+  origin: ["http://localhost:3000"], // Client's URL, not the server's
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true, // <-- REQUIRED backend setting
+};
+
+app.use(cors(corsOptions));
 
 //orutes initialize
 app.use("/api/auth", authRoutes);
