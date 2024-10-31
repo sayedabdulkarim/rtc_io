@@ -1,26 +1,45 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Typography } from "@mui/material";
 import AuthBox from "../../shared/components/AuthBox";
 import RegisterPageInputs from "../../shared/components/register/RegisterPageInputs";
 import RegisterPageFooter from "../../shared/components/register/RegisterPageFooter";
 import { validateRegisterForm } from "../../shared/utils/validators";
-// import { useHistory } from "react-router-dom";
+import { useRegisterUserMutation } from "../../slices/auth/authApiSlice";
+import { setCredentials } from "../../slices/auth/authSlice";
 
 const RegisterPage = ({ register }) => {
-  //   const history = useHistory();
-
+  //misc
+  const dispatch = useDispatch();
+  //state
   const [mail, setMail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
   const [isFormValid, setIsFormValid] = useState(false);
 
-  const handleRegister = () => {
+  //queries n mutation
+  const [registerUser, { isLoading: registerLoading, error: registerError }] =
+    useRegisterUserMutation();
+
+  //methods
+  const handleRegister = async (e) => {
     const userDetails = {
       mail,
       password,
       username,
     };
+
+    try {
+      const res = await registerUser(userDetails).unwrap();
+      console.log(res, " resss");
+      localStorage.setItem("jwtToken", res.userDetails.token);
+      // handleShowAlert(dispatch, "success", res?.message);
+      dispatch(setCredentials({ ...res }));
+      // navigate("/");
+    } catch (err) {
+      //   handleShowAlert(dispatch, "error", err?.data?.message);
+      console.log(err, " errr");
+    }
 
     console.log(userDetails, " det");
 
