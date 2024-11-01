@@ -9,7 +9,8 @@ import App from "../App";
 import PrivateRoute from "../shared/PrivateRoute";
 import PublicRoute from "../shared/PublicRoute";
 //auth routes
-import DashboardScreen from "../screens/auth/Dashboard";
+// import DashboardScreen from "../screens/auth/Dashboard";
+import DashboardScreen from "../screens/auth/Dashboard/Dashboard";
 //unauth routes
 import LoginScreen from "../screens/unauth/Login";
 import RegisterScreen from "../screens/unauth/Register";
