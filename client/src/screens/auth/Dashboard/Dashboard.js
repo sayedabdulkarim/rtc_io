@@ -27,7 +27,7 @@ const Dashboard = () => {
 
   return (
     <Wrapper>
-      <button onClick={() => console.log(userDetails)}>hello</button>
+      {/* <button onClick={() => console.log(userDetails)}>hello</button> */}
       <SideBar />
       <FriendsSideBar />
       <Messenger />
