@@ -5,7 +5,8 @@ import FriendsSideBar from "./FriendsSideBar/FriendsSideBar";
 import Messenger from "./Messenger/Messenger";
 import AppBar from "./AppBar/AppBar";
 import { logoutUser } from "../../../slices/auth/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { connectWithSocketServer } from "../../../realtimeCommunication/socketConnection";
 
 const Wrapper = styled("div")({
   width: "100%",
@@ -15,18 +16,18 @@ const Wrapper = styled("div")({
 
 const Dashboard = () => {
   //misc
+  const { userDetails } = useSelector((state) => state.authReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const userDetails = localStorage.getItem("user");
-
     if (!userDetails) {
       dispatch(logoutUser());
-    }
-  }, [dispatch]);
+    } else connectWithSocketServer(userDetails);
+  }, [dispatch, userDetails]);
 
   return (
     <Wrapper>
+      <button onClick={() => console.log(userDetails)}>hello</button>
       <SideBar />
       <FriendsSideBar />
       <Messenger />
