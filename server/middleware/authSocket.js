@@ -4,7 +4,7 @@ const config = process.env;
 
 const verifyTokenSocket = (socket, next) => {
   const token = socket.handshake.auth?.token;
-
+  // console.log(socket, " ssss");
   try {
     const decoded = jwt.verify(token, config.TOKEN_KEY);
     socket.user = decoded;

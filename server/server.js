@@ -4,6 +4,8 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
 
+const socketServer = require("./socketServer");
+
 //routes files
 const authRoutes = require("./routes/authRoutes.js");
 
@@ -28,10 +30,14 @@ app.use(cors(corsOptions));
 //orutes initialize
 app.use("/api/auth", authRoutes);
 
+//db connect
+const server = http.createServer(app);
+socketServer.registerSocketServer(server);
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then((res) => {
-    app.listen(PORT, () =>
+    server.listen(PORT, () =>
       console.log(
         "mongoose connected successfully and running on PORT : " + PORT
       )
