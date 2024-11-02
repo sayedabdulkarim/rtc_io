@@ -8,17 +8,30 @@ import Typography from "@mui/material/Typography";
 import { validateMail } from "../../../../shared/utils/validators";
 import InputWithLabel from "../../../../shared/components/InputWithLabel";
 import CustomPrimaryButton from "../../../../shared/components/CustomPrimaryButton";
+import { useSendFriendInvitationMutation } from "../../../../slices/friend/friendApiSlice";
 
 const AddFriendDialog = ({
   isDialogOpen,
   closeDialogHandler,
-  sendFriendInvitation = () => {},
+  // sendFriendInvitation = () => {},
 }) => {
+  //
+  const [sendFriendInvitation, { isSuccess, isError, error }] =
+    useSendFriendInvitationMutation();
+  //state
   const [mail, setMail] = useState("");
   const [isFormValid, setIsFormValid] = useState("");
 
-  const handleSendInvitation = () => {
+  const handleSendInvitation = async () => {
     // send friend request to server
+    try {
+      await sendFriendInvitation({ mail }).unwrap();
+      // Handle success, like showing an alert
+      console.log("Invitation sent successfully!");
+    } catch (err) {
+      // Handle error, like showing an alert
+      console.error("Error sending invitation:", err);
+    }
   };
 
   const handleCloseDialog = () => {
@@ -38,9 +51,9 @@ const AddFriendDialog = ({
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <Typography>
-              Enter e-mail address of friend which you would like to invite
-            </Typography>
+            Enter e-mail address of friend which you would like to invite
+            {/* <Typography>
+            </Typography> */}
           </DialogContentText>
           <InputWithLabel
             label="Mail"
