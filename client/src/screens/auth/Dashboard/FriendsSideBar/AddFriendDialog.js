@@ -10,11 +10,7 @@ import InputWithLabel from "../../../../shared/components/InputWithLabel";
 import CustomPrimaryButton from "../../../../shared/components/CustomPrimaryButton";
 import { useSendFriendInvitationMutation } from "../../../../slices/friend/friendApiSlice";
 
-const AddFriendDialog = ({
-  isDialogOpen,
-  closeDialogHandler,
-  // sendFriendInvitation = () => {},
-}) => {
+const AddFriendDialog = ({ isDialogOpen, closeDialogHandler }) => {
   //
   const [sendFriendInvitation, { isSuccess, isError, error }] =
     useSendFriendInvitationMutation();
