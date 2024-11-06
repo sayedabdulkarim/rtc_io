@@ -9,8 +9,12 @@ import { validateMail } from "../../../../shared/utils/validators";
 import InputWithLabel from "../../../../shared/components/InputWithLabel";
 import CustomPrimaryButton from "../../../../shared/components/CustomPrimaryButton";
 import { useSendFriendInvitationMutation } from "../../../../slices/friend/friendApiSlice";
+import { handleShowAlert } from "../../../../shared/utils/commonHelper";
+import { useDispatch } from "react-redux";
 
 const AddFriendDialog = ({ isDialogOpen, closeDialogHandler }) => {
+  //misc
+  const dispatch = useDispatch();
   //
   const [sendFriendInvitation, { isSuccess, isError, error }] =
     useSendFriendInvitationMutation();
@@ -21,12 +25,15 @@ const AddFriendDialog = ({ isDialogOpen, closeDialogHandler }) => {
   const handleSendInvitation = async () => {
     // send friend request to server
     try {
-      await sendFriendInvitation({ mail }).unwrap();
+      await sendFriendInvitation({ targetMailAddress: mail }).unwrap();
+      closeDialogHandler();
+      setMail("");
+      handleShowAlert(dispatch, "success", "Invitation has been sent");
       // Handle success, like showing an alert
-      console.log("Invitation sent successfully!");
     } catch (err) {
       // Handle error, like showing an alert
       console.error("Error sending invitation:", err);
+      handleShowAlert(dispatch, "error", err?.data);
     }
   };
 
