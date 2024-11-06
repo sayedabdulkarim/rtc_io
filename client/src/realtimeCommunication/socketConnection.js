@@ -1,4 +1,5 @@
 import io from "socket.io-client";
+import { setPendingFriendsInvitations } from "../slices/friend/friendSlice";
 // import {
 //   setPendingFriendsInvitations,
 //   setFriends,
@@ -8,7 +9,7 @@ import io from "socket.io-client";
 
 let socket = null;
 
-export const connectWithSocketServer = (userDetails) => {
+export const connectWithSocketServer = (userDetails, dispatch) => {
   const jwtToken = userDetails.token;
 
   socket = io("http://localhost:5002", {
@@ -23,10 +24,11 @@ export const connectWithSocketServer = (userDetails) => {
     console.log(socket.id);
   });
 
-  // socket.on("friends-invitations", (data) => {
-  //   const { pendingInvitations } = data;
-  //   store.dispatch(setPendingFriendsInvitations(pendingInvitations));
-  // });
+  socket.on("friends-invitations", (data) => {
+    const { pendingInvitations } = data;
+    dispatch(setPendingFriendsInvitations(pendingInvitations));
+    // store.dispatch(setPendingFriendsInvitations(pendingInvitations));
+  });
 
   // socket.on("friends-list", (data) => {
   //   const { friends } = data;

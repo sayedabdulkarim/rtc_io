@@ -17,17 +17,22 @@ const Wrapper = styled("div")({
 const Dashboard = () => {
   //misc
   const { userDetails } = useSelector((state) => state.authReducer);
+  const { pendingFriendsInvitations } = useSelector(
+    (state) => state.friendReducer
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!userDetails) {
       dispatch(logoutUser());
-    } else connectWithSocketServer(userDetails);
+    } else connectWithSocketServer(userDetails, dispatch);
   }, [dispatch, userDetails]);
 
   return (
     <Wrapper>
-      {/* <button onClick={() => console.log(userDetails)}>hello</button> */}
+      <button onClick={() => console.log({ pendingFriendsInvitations }, " hh")}>
+        hello
+      </button>
       <SideBar />
       <FriendsSideBar />
       <Messenger />
