@@ -17,7 +17,7 @@ const Wrapper = styled("div")({
 const Dashboard = () => {
   //misc
   const { userDetails } = useSelector((state) => state.authReducer);
-  const { pendingFriendsInvitations } = useSelector(
+  const { pendingFriendsInvitations, friends, onlineUsers } = useSelector(
     (state) => state.friendReducer
   );
   const dispatch = useDispatch();
@@ -30,7 +30,11 @@ const Dashboard = () => {
 
   return (
     <Wrapper>
-      <button onClick={() => console.log({ pendingFriendsInvitations }, " hh")}>
+      <button
+        onClick={() =>
+          console.log({ pendingFriendsInvitations, friends }, " hh")
+        }
+      >
         hello
       </button>
       <SideBar />
