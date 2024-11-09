@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "@mui/system";
 import PendingInvitationsListItem from "./PendingInvitationsListItem";
+import { useSelector } from "react-redux";
 
 const DUMMY_INVITATIONS = [
   {
@@ -29,9 +30,12 @@ const MainContainer = styled("div")({
 });
 
 const PendingInvitationsList = () => {
+  const { pendingFriendsInvitations, friends, onlineUsers } = useSelector(
+    (state) => state.friendReducer
+  );
   return (
     <MainContainer>
-      {DUMMY_INVITATIONS.map((invitation) => (
+      {pendingFriendsInvitations.map((invitation) => (
         <PendingInvitationsListItem
           key={invitation._id}
           id={invitation._id}
