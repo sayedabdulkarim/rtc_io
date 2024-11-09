@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "@mui/system";
 import FriendsListItem from "./FriendsListItem";
+import { useSelector } from "react-redux";
 
 const DUMMY_FRIENDS = [
   {
@@ -26,9 +27,12 @@ const MainContainer = styled("div")({
 });
 
 const FriendsList = () => {
+  const { pendingFriendsInvitations, friends, onlineUsers } = useSelector(
+    (state) => state.friendReducer
+  );
   return (
     <MainContainer>
-      {DUMMY_FRIENDS.map((f) => (
+      {friends.map((f) => (
         <FriendsListItem
           username={f.username}
           id={f.id}
