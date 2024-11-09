@@ -37,7 +37,7 @@ const FriendsList = () => {
           username={f.username}
           id={f.id}
           key={f.id}
-          isOnline={f.isOnline}
+          isOnline={onlineUsers.some((user) => user.userId === f.id)}
         />
       ))}
     </MainContainer>
