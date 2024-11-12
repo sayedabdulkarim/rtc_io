@@ -39,13 +39,17 @@ const Messages = () => {
       {DUMMY_MESSAGES.map((message, index) => {
         const sameAuthor =
           index > 0 &&
-          messages[index].author._id === messages[index - 1].author._id;
+          DUMMY_MESSAGES[index]?.author?._id ===
+            DUMMY_MESSAGES[index - 1]?.author?._id;
 
         const sameDay =
           index > 0 &&
-          convertDateToHumanReadable(new Date(message.date), "dd/mm/yy") ===
+          convertDateToHumanReadable(
+            new Date(DUMMY_MESSAGES[index]?.date),
+            "dd/mm/yy"
+          ) ===
             convertDateToHumanReadable(
-              new Date(messages[index - 1].date),
+              new Date(DUMMY_MESSAGES[index - 1]?.date),
               "dd/mm/yy"
             );
 

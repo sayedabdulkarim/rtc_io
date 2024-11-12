@@ -1,53 +1,53 @@
 const DUMMY_MESSAGES = [
   {
     _id: 1,
+    id: 1,
     content: "hello",
-    sameAuthor: false,
     author: {
       username: "Marek",
+      _id: 1,
     },
-    date: "22/01/2022",
-    sameDay: false,
+    date: "2022-01-22",
   },
   {
     _id: 2,
+    id: 2,
     content: "hello once again",
-    sameAuthor: true,
     author: {
       username: "Marek",
+      _id: 1,
     },
-    date: "22/01/2022",
-    sameDay: true,
+    date: "2022-01-22",
   },
   {
     _id: 3,
+    id: 3,
     content: "hello third time",
-    sameAuthor: true,
     author: {
       username: "Marek",
+      _id: 1,
     },
-    date: "23/01/2022",
-    sameDay: false,
+    date: "2022-01-23",
   },
   {
     _id: 4,
+    id: 4,
     content: "hello response first time",
-    sameAuthor: false,
     author: {
       username: "John",
+      _id: 2,
     },
-    date: "23/01/2022",
-    sameDay: true,
+    date: "2022-01-23",
   },
   {
     _id: 5,
+    id: 5,
     content: "hello response third time",
-    sameAuthor: true,
     author: {
       username: "John",
+      _id: 2,
     },
-    date: "24/01/2022",
-    sameDay: false,
+    date: "2022-01-24",
   },
 ];
 
