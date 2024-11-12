@@ -20,6 +20,9 @@ const Dashboard = () => {
   const { pendingFriendsInvitations, friends, onlineUsers } = useSelector(
     (state) => state.friendReducer
   );
+  const { chosenChatDetails, chatType, messages } = useSelector(
+    (state) => state.chatReducer
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,7 +35,16 @@ const Dashboard = () => {
     <Wrapper>
       <button
         onClick={() =>
-          console.log({ pendingFriendsInvitations, friends }, " hh")
+          console.log(
+            {
+              pendingFriendsInvitations,
+              friends,
+              chosenChatDetails,
+              chatType,
+              messages,
+            },
+            " hh"
+          )
         }
       >
         hello
