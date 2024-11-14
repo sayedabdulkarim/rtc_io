@@ -28,8 +28,8 @@ const Dashboard = () => {
   useEffect(() => {
     if (!userDetails) {
       dispatch(logoutUser());
-    } else connectWithSocketServer(userDetails, dispatch);
-  }, [dispatch, userDetails]);
+    } else connectWithSocketServer(userDetails, dispatch, chosenChatDetails);
+  }, [chosenChatDetails, dispatch, userDetails]);
 
   return (
     <Wrapper>

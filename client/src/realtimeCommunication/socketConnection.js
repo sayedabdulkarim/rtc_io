@@ -14,7 +14,11 @@ import { updateDirectChatHistoryIfActive } from "../shared/utils/chat";
 
 let socket = null;
 
-export const connectWithSocketServer = (userDetails, dispatch) => {
+export const connectWithSocketServer = (
+  userDetails,
+  dispatch,
+  chosenChatDetails
+) => {
   const jwtToken = userDetails.token;
 
   socket = io("http://localhost:5002", {
@@ -52,7 +56,12 @@ export const connectWithSocketServer = (userDetails, dispatch) => {
   //
   socket.on("direct-chat-history", (data) => {
     console.log(data, ' "direct-chat-history');
-    updateDirectChatHistoryIfActive(data);
+    updateDirectChatHistoryIfActive(
+      data,
+      dispatch,
+      userDetails,
+      chosenChatDetails
+    );
   });
 };
 

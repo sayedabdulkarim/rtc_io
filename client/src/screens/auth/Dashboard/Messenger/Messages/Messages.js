@@ -33,10 +33,11 @@ const Messages = () => {
 
   return (
     <MainContainer>
+      <h1 onClick={() => console.log(messages, " mmm")}>Hello</h1>
       <MessagesHeader name={chosenChatDetails?.name} />
       {/* TODO: to make dynamic */}
-      {/* {messages.map((message, index) => { */}
-      {DUMMY_MESSAGES.map((message, index) => {
+      {messages?.map((message, index) => {
+        // {DUMMY_MESSAGES.map((message, index) => {
         const sameAuthor =
           index > 0 &&
           DUMMY_MESSAGES[index]?.author?._id ===
