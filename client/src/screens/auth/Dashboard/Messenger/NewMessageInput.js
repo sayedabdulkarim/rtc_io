@@ -45,28 +45,28 @@ const NewMessageInput = () => {
     console.log("Setting up socket listeners for typing events");
 
     socket.on("typing", ({ userId }) => {
-      console.log(
-        "Received typing event from:",
-        userId,
-        "Expected recipient:",
-        chosenChatDetails.id
-      ); // Debugging log
+      // console.log(
+      //   "Received typing event from:",
+      //   userId,
+      //   "Expected recipient:",
+      //   chosenChatDetails.id
+      // ); // Debugging log
       if (userId === chosenChatDetails.id) {
         setIsRecipientTyping(true);
-        console.log("Setting isRecipientTyping to true");
+        // console.log("Setting isRecipientTyping to true");
       }
     });
 
     socket.on("stop-typing", ({ userId }) => {
-      console.log(
-        "Received stop-typing event from:",
-        userId,
-        "Expected recipient:",
-        chosenChatDetails.id
-      ); // Debugging log
+      // console.log(
+      //   "Received stop-typing event from:",
+      //   userId,
+      //   "Expected recipient:",
+      //   chosenChatDetails.id
+      // ); // Debugging log
       if (userId === chosenChatDetails.id) {
         setIsRecipientTyping(false);
-        console.log("Setting isRecipientTyping to false");
+        // console.log("Setting isRecipientTyping to false");
       }
     });
 
