@@ -64,3 +64,15 @@ export const sendDirectMessage = (data) => {
 export const getDirectChatHistory = (data) => {
   socket.emit("direct-chat-history", data);
 };
+
+export const startTyping = (recipientUserId) => {
+  console.log("Emitting typing event to recipient:", recipientUserId); // Debugging log
+  socket.emit("typing", { recipientUserId });
+};
+
+export const stopTyping = (recipientUserId) => {
+  console.log("Emitting stop-typing event to recipient:", recipientUserId); // Debugging log
+  socket.emit("stop-typing", { recipientUserId });
+};
+
+export { socket };
