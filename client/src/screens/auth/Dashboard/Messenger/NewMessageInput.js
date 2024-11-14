@@ -113,7 +113,7 @@ const NewMessageInput = () => {
     }
   };
 
-  console.log(isRecipientTyping, " isRecipientTyping");
+  // console.log(isRecipientTyping, " isRecipientTyping");
   return (
     <MainContainer>
       <Input

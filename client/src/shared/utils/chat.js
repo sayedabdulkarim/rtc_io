@@ -39,17 +39,25 @@ const updateChatHistoryIfSameConversationActive = ({
   messages,
   dispatch,
 }) => {
-  const isSameConversationActive = participants.every((participant) =>
-    usersInConversation.includes(participant)
+  // Sort both arrays before comparing
+  const sortedParticipants = participants.slice().sort(); // Make sure to copy and then sort
+  const sortedUsersInConversation = usersInConversation.slice().sort();
+
+  console.log("sortedParticipants:", sortedParticipants);
+  console.log("sortedUsersInConversation:", sortedUsersInConversation);
+
+  const isSameConversationActive = sortedParticipants.every(
+    (participant, index) => participant === sortedUsersInConversation[index]
   );
 
   console.log("Checking Conversation Match:", {
-    participants,
-    usersInConversation,
+    sortedParticipants,
+    sortedUsersInConversation,
     isSameConversationActive,
   });
 
-  if (isSameConversationActive) {
+  // if (isSameConversationActive) {
+  if (true) {
     console.log("Dispatching setMessages with:", messages);
     dispatch(setMessages(messages));
   } else {
