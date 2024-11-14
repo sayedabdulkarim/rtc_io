@@ -51,7 +51,7 @@ export const connectWithSocketServer = (userDetails, dispatch) => {
 
   //
   socket.on("direct-chat-history", (data) => {
-    console.log(data);
+    console.log(data, ' "direct-chat-history');
     updateDirectChatHistoryIfActive(data);
   });
 };
