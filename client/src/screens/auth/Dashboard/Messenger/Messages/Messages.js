@@ -33,7 +33,6 @@ const Messages = () => {
 
   return (
     <MainContainer>
-      <h1 onClick={() => console.log(messages, " mmm")}>Hello</h1>
       <MessagesHeader name={chosenChatDetails?.name} />
       {/* TODO: to make dynamic */}
       {messages?.map((message, index) => {
