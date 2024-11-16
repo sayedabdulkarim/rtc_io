@@ -3,18 +3,19 @@ import IconButton from "@mui/material/IconButton";
 import ScreenShareIcon from "@mui/icons-material/ScreenShare";
 import StopScreenShareIcon from "@mui/icons-material/StopScreenShare";
 import * as webRTCHandler from "../../../../../realtimeCommunication/webRTCHandler";
+import { useDispatch, useSelector } from "react-redux";
+import { setScreenSharingStream } from "../../../../../slices/room/roomSlice";
 
 const constraints = {
   audio: false,
   video: true,
 };
 
-const ScreenShareButton = ({
-  localStream,
-  screenSharingStream,
-  setScreenSharingStream,
-  isScreenSharingActive,
-}) => {
+const ScreenShareButton = () => {
+  const { localStream, isScreenSharingActive, screenSharingStream } =
+    useSelector((state) => state.roomReducer);
+  const dispatch = useDispatch();
+  //
   const handleScreenShareToggle = async () => {
     if (!isScreenSharingActive) {
       let stream = null;
@@ -27,13 +28,13 @@ const ScreenShareButton = ({
       }
 
       if (stream) {
-        setScreenSharingStream(stream);
+        dispatch(setScreenSharingStream(stream));
         webRTCHandler.switchOutgoingTracks(stream);
       }
     } else {
       webRTCHandler.switchOutgoingTracks(localStream);
       screenSharingStream.getTracks().forEach((t) => t.stop());
-      setScreenSharingStream(null);
+      dispatch(setScreenSharingStream(null));
     }
   };
 
