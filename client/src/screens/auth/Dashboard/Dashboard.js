@@ -23,6 +23,9 @@ const Dashboard = () => {
   const { chosenChatDetails, chatType, messages } = useSelector(
     (state) => state.chatReducer
   );
+  const { audioOnly, isUserRoomCreator, isUserInRoom } = useSelector(
+    (state) => state.roomReducer
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,6 +45,9 @@ const Dashboard = () => {
               chosenChatDetails,
               chatType,
               messages,
+              audioOnly,
+              isUserInRoom,
+              isUserRoomCreator,
             },
             " hh"
           )
