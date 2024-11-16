@@ -2,7 +2,6 @@ import React from "react";
 import { styled } from "@mui/system";
 import CameraButton from "./CameraButton";
 import MicButton from "./MicButton";
-//
 import CloseRoomButton from "./CloseRoomButton";
 import ScreenShareButton from "./ScreenShareButton";
 import { useSelector } from "react-redux";
