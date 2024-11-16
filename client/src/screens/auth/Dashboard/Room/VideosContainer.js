@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "@mui/system";
-import { connect } from "react-redux";
 import Video from "./Video";
+import { useSelector } from "react-redux";
 
 const MainContainer = styled("div")({
   height: "85%",
@@ -10,11 +10,10 @@ const MainContainer = styled("div")({
   flexWrap: "wrap",
 });
 
-const VideosContainer = ({
-  localStream,
-  remoteStreams,
-  screenSharingStream,
-}) => {
+const VideosContainer = () => {
+  const { localStream, remoteStreams, screenSharingStream } = useSelector(
+    (state) => state.roomReducer
+  );
   return (
     <MainContainer>
       <Video
@@ -28,10 +27,4 @@ const VideosContainer = ({
   );
 };
 
-const mapStoreStateToProps = ({ room }) => {
-  return {
-    ...room,
-  };
-};
-
-export default connect(mapStoreStateToProps)(VideosContainer);
+export default VideosContainer;

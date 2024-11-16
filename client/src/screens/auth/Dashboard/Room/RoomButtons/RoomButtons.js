@@ -2,10 +2,10 @@ import React from "react";
 import { styled } from "@mui/system";
 import CameraButton from "./CameraButton";
 import MicButton from "./MicButton";
+//
 import CloseRoomButton from "./CloseRoomButton";
 import ScreenShareButton from "./ScreenShareButton";
-import { connect } from "react-redux";
-import { getActions } from "../../../store/actions/roomActions";
+import { useSelector } from "react-redux";
 
 const MainContainer = styled("div")({
   height: "15%",
@@ -19,7 +19,9 @@ const MainContainer = styled("div")({
 });
 
 const RoomButtons = (props) => {
-  const { localStream, isUserJoinedWithOnlyAudio } = props;
+  const { localStream, isUserJoinedWithOnlyAudio } = useSelector(
+    (state) => state.roomReducer
+  );
 
   return (
     <MainContainer>
@@ -31,16 +33,4 @@ const RoomButtons = (props) => {
   );
 };
 
-const mapStoreStateToProps = ({ room }) => {
-  return {
-    ...room,
-  };
-};
-
-const mapActionsToProps = (dispatch) => {
-  return {
-    ...getActions(dispatch),
-  };
-};
-
-export default connect(mapStoreStateToProps, mapActionsToProps)(RoomButtons);
+export default RoomButtons;

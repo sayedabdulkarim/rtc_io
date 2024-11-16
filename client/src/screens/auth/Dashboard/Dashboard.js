@@ -7,6 +7,7 @@ import AppBar from "./AppBar/AppBar";
 import { logoutUser } from "../../../slices/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { connectWithSocketServer } from "../../../realtimeCommunication/socketConnection";
+import Room from "./Room/Room";
 
 const Wrapper = styled("div")({
   width: "100%",
@@ -23,9 +24,8 @@ const Dashboard = () => {
   const { chosenChatDetails, chatType, messages } = useSelector(
     (state) => state.chatReducer
   );
-  const { audioOnly, isUserRoomCreator, isUserInRoom } = useSelector(
-    (state) => state.roomReducer
-  );
+  const { audioOnly, isUserRoomCreator, isUserInRoom, roomDetails } =
+    useSelector((state) => state.roomReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -40,11 +40,12 @@ const Dashboard = () => {
         onClick={() =>
           console.log(
             {
-              pendingFriendsInvitations,
-              friends,
-              chosenChatDetails,
-              chatType,
-              messages,
+              // pendingFriendsInvitations,
+              // friends,
+              // chosenChatDetails,
+              // chatType,
+              // messages,
+              roomDetails,
               audioOnly,
               isUserInRoom,
               isUserRoomCreator,
@@ -59,6 +60,7 @@ const Dashboard = () => {
       <FriendsSideBar />
       <Messenger />
       <AppBar />
+      {isUserInRoom && <Room />}
     </Wrapper>
   );
 };

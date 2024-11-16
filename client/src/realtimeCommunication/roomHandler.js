@@ -13,6 +13,10 @@ import * as webRTCHandler from "./webRTCHandler";
 import {
   openRoom,
   setIsUserJoinedWithOnlyAudio,
+  setLocalStream,
+  setRemoteStreams,
+  setRoomDetails,
+  setScreenSharingStream,
 } from "../slices/room/roomSlice";
 
 // export const createNewRoom = () => {
@@ -91,25 +95,25 @@ export const createNewRoom = (dispatch, getState) => {
 //   webRTCHandler.getLocalStreamPreview(audioOnly, successCalbackFunc);
 // };
 
-// export const leaveRoom = () => {
-//   const roomId = store.getState().room.roomDetails.roomId;
+export const leaveRoom = (dispatch, getState) => {
+  const roomId = getState.roomDetails.roomId;
 
-//   const localStream = store.getState().room.localStream;
-//   if (localStream) {
-//     localStream.getTracks().forEach((track) => track.stop());
-//     store.dispatch(setLocalStream(null));
-//   }
+  const localStream = getState.localStream;
+  if (localStream) {
+    localStream.getTracks().forEach((track) => track.stop());
+    dispatch(setLocalStream(null));
+  }
 
-//   const screenSharingStream = store.getState().room.screenSharingStream;
-//   if (screenSharingStream) {
-//     screenSharingStream.getTracks().forEach((track) => track.stop());
-//     store.dispatch(setScreenSharingStream(null));
-//   }
+  const screenSharingStream = getState.screenSharingStream;
+  if (screenSharingStream) {
+    screenSharingStream.getTracks().forEach((track) => track.stop());
+    dispatch(setScreenSharingStream(null));
+  }
 
-//   store.dispatch(setRemoteStreams([]));
-//   webRTCHandler.closeAllConnections();
+  dispatch(setRemoteStreams([]));
+  webRTCHandler.closeAllConnections();
 
-//   socketConnection.leaveRoom({ roomId });
-//   store.dispatch(setRoomDetails(null));
-//   store.dispatch(setOpenRoom(false, false));
-// };
+  socketConnection.leaveRoom({ roomId });
+  dispatch(setRoomDetails(null));
+  dispatch(openRoom(false, false));
+};

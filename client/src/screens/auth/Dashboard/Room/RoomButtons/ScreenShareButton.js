@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import ScreenShareIcon from "@mui/icons-material/ScreenShare";
 import StopScreenShareIcon from "@mui/icons-material/StopScreenShare";
-import * as webRTCHandler from "../../../realtimeCommunication/webRTCHandler";
+import * as webRTCHandler from "../../../../../realtimeCommunication/webRTCHandler";
 
 const constraints = {
   audio: false,
