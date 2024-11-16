@@ -5,6 +5,7 @@ import authReducer from "./slices/auth/authSlice";
 import alertReducer from "./slices/alert/alertSlice";
 import friendReducer from "./slices/friend/friendSlice";
 import chatReducer from "./slices/chat/chatSlice";
+import roomReducer from "./slices/room/roomSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     alertReducer,
     friendReducer,
     chatReducer,
+    roomReducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => [
