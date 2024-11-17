@@ -12,7 +12,7 @@ const newConnectionHandler = async (socket, io) => {
 
   // Make the user join a room named after their userId
   socket.join(userDetails.userId);
-  console.log(`User with ID ${userDetails.userId} has joined their own room`);
+  // console.log(`User with ID ${userDetails.userId} has joined their own room`);
 
   // Update pending friends invitations list
   friendsUpdate.updateFriendsPendingInvitations(userDetails.userId);

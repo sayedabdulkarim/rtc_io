@@ -31,7 +31,7 @@ export const connectWithSocketServer = (
   // socket = io("http://localhost:5002");
 
   socket.on("connect", () => {
-    console.log("succesfully connected with socket.io server");
+    // console.log("succesfully connected with socket.io server");
     console.log(socket.id);
   });
 
@@ -57,7 +57,7 @@ export const connectWithSocketServer = (
 
   //
   socket.on("direct-chat-history", (data) => {
-    console.log(data, ' "direct-chat-history');
+    // console.log(data, ' "direct-chat-history');
     updateDirectChatHistoryIfActive(
       data,
       dispatch,
@@ -97,7 +97,7 @@ export const connectWithSocketServer = (
 };
 
 export const sendDirectMessage = (data) => {
-  console.log(data);
+  // console.log(data);
   socket.emit("direct-message", data);
 };
 

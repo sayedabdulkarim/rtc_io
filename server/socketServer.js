@@ -26,7 +26,7 @@ const registerSocketServer = (server) => {
   };
 
   io.on("connection", (socket) => {
-    console.log("user connected", socket.id);
+    // console.log("user connected", socket.id);
 
     // Handle new connection (user joins their own room here)
     newConnectionHandler(socket, io);
@@ -43,7 +43,7 @@ const registerSocketServer = (server) => {
     socket.on("typing", ({ recipientUserId }) => {
       const userId = socket.user?.userId;
       if (userId && recipientUserId) {
-        console.log(`Emitting typing event to recipient: ${recipientUserId}`);
+        // console.log(`Emitting typing event to recipient: ${recipientUserId}`);
         io.to(recipientUserId).emit("typing", { userId }); // Emit to recipient's room
       }
     });

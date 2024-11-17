@@ -42,7 +42,7 @@ const NewMessageInput = () => {
   const typingTimeoutRef = useRef(null);
 
   useEffect(() => {
-    console.log("Setting up socket listeners for typing events");
+    // console.log("Setting up socket listeners for typing events");
 
     socket.on("typing", ({ userId }) => {
       // console.log(
