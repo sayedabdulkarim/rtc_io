@@ -52,10 +52,11 @@ export const createNewRoom = (dispatch, getState) => {
   webRTCHandler.getLocalStreamPreview(dispatch, audioOnly, successCallbackFunc);
 };
 
-// export const newRoomCreated = (data) => {
-//   const { roomDetails } = data;
-//   store.dispatch(setRoomDetails(roomDetails));
-// };
+export const newRoomCreated = (data, dispatch) => {
+  const { roomDetails } = data;
+  console.log(data, "newRoomCreated");
+  dispatch(setRoomDetails(roomDetails));
+};
 
 // export const updateActiveRooms = (data) => {
 //   const { activeRooms } = data;

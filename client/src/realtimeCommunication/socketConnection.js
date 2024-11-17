@@ -68,32 +68,32 @@ export const connectWithSocketServer = (
 
   //rooms
   socket.on("room-create", (data) => {
-    // roomHandler.newRoomCreated(data);
+    roomHandler.newRoomCreated(data, dispatch);
   });
 
-  socket.on("active-rooms", (data) => {
-    // roomHandler.updateActiveRooms(data);
-  });
+  // socket.on("active-rooms", (data) => {
+  //   // roomHandler.updateActiveRooms(data);
+  // });
 
-  socket.on("conn-prepare", (data) => {
-    const { connUserSocketId } = data;
-    // webRTCHandler.prepareNewPeerConnection(connUserSocketId, false);
-    socket.emit("conn-init", { connUserSocketId: connUserSocketId });
-  });
+  // socket.on("conn-prepare", (data) => {
+  //   const { connUserSocketId } = data;
+  //   // webRTCHandler.prepareNewPeerConnection(connUserSocketId, false);
+  //   socket.emit("conn-init", { connUserSocketId: connUserSocketId });
+  // });
 
-  socket.on("conn-init", (data) => {
-    const { connUserSocketId } = data;
-    // webRTCHandler.prepareNewPeerConnection(connUserSocketId, true);
-  });
+  // socket.on("conn-init", (data) => {
+  //   const { connUserSocketId } = data;
+  //   // webRTCHandler.prepareNewPeerConnection(connUserSocketId, true);
+  // });
 
-  socket.on("conn-signal", (data) => {
-    // webRTCHandler.handleSignalingData(data);
-  });
+  // socket.on("conn-signal", (data) => {
+  //   // webRTCHandler.handleSignalingData(data);
+  // });
 
-  socket.on("room-participant-left", (data) => {
-    console.log("user left room");
-    // webRTCHandler.handleParticipantLeftRoom(data);
-  });
+  // socket.on("room-participant-left", (data) => {
+  //   console.log("user left room");
+  //   // webRTCHandler.handleParticipantLeftRoom(data);
+  // });
 };
 
 export const sendDirectMessage = (data) => {
