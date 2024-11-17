@@ -12,12 +12,14 @@ import * as socketConnection from "./socketConnection";
 import * as webRTCHandler from "./webRTCHandler";
 import {
   openRoom,
+  setActiveRooms,
   setIsUserJoinedWithOnlyAudio,
   setLocalStream,
   setRemoteStreams,
   setRoomDetails,
   setScreenSharingStream,
 } from "../slices/room/roomSlice";
+import store from "../store";
 
 // export const createNewRoom = () => {
 //   const successCalbackFunc = () => {
@@ -58,30 +60,38 @@ export const newRoomCreated = (data, dispatch) => {
   dispatch(setRoomDetails(roomDetails));
 };
 
-// export const updateActiveRooms = (data) => {
-//   const { activeRooms } = data;
+export const updateActiveRooms = (data, getState, dispatch) => {
+  const { activeRooms } = data;
 
-//   const friends = store.getState().friends.friends;
-//   const rooms = [];
+  const friends = store.getState().friendReducer.friends;
+  console.log(
+    {
+      data,
+      getState,
+      friends,
+    },
+    " updateActiveRooms"
+  );
+  const rooms = [];
 
-//   const userId = store.getState().auth.userDetails?._id;
+  const userId = getState.userDetails?._id;
 
-//   activeRooms.forEach((room) => {
-//     const isRoomCreatedByMe = room.roomCreator.userId === userId;
+  activeRooms.forEach((room) => {
+    const isRoomCreatedByMe = room.roomCreator.userId === userId;
 
-//     if (isRoomCreatedByMe) {
-//       rooms.push({ ...room, creatorUsername: "Me" });
-//     } else {
-//       friends.forEach((f) => {
-//         if (f.id === room.roomCreator.userId) {
-//           rooms.push({ ...room, creatorUsername: f.username });
-//         }
-//       });
-//     }
-//   });
+    if (isRoomCreatedByMe) {
+      rooms.push({ ...room, creatorUsername: "Me" });
+    } else {
+      friends.forEach((f) => {
+        if (f.id === room.roomCreator.userId) {
+          rooms.push({ ...room, creatorUsername: f.username });
+        }
+      });
+    }
+  });
 
-//   store.dispatch(setActiveRooms(rooms));
-// };
+  dispatch(setActiveRooms(rooms));
+};
 
 // export const joinRoom = (roomId) => {
 //   const successCalbackFunc = () => {

@@ -24,8 +24,13 @@ const Dashboard = () => {
   const { chosenChatDetails, chatType, messages } = useSelector(
     (state) => state.chatReducer
   );
-  const { audioOnly, isUserRoomCreator, isUserInRoom, roomDetails } =
-    useSelector((state) => state.roomReducer);
+  const {
+    audioOnly,
+    isUserRoomCreator,
+    isUserInRoom,
+    roomDetails,
+    activeRooms,
+  } = useSelector((state) => state.roomReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,6 +39,8 @@ const Dashboard = () => {
     } else connectWithSocketServer(userDetails, dispatch, chosenChatDetails);
   }, [chosenChatDetails, dispatch, userDetails]);
 
+  // console.log({});
+
   return (
     <Wrapper>
       <button
@@ -41,7 +48,7 @@ const Dashboard = () => {
           console.log(
             {
               // pendingFriendsInvitations,
-              // friends,
+              friends,
               // chosenChatDetails,
               // chatType,
               // messages,
@@ -49,6 +56,7 @@ const Dashboard = () => {
               audioOnly,
               isUserInRoom,
               isUserRoomCreator,
+              activeRooms,
             },
             " hh"
           )

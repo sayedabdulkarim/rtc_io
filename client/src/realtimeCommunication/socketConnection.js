@@ -71,9 +71,14 @@ export const connectWithSocketServer = (
     roomHandler.newRoomCreated(data, dispatch);
   });
 
-  // socket.on("active-rooms", (data) => {
-  //   // roomHandler.updateActiveRooms(data);
-  // });
+  socket.on("active-rooms", (data) => {
+    const payload = {
+      userDetails,
+      // friends,
+    };
+    console.log({ data, payload }, "active-rooms");
+    roomHandler.updateActiveRooms(data, payload, dispatch);
+  });
 
   // socket.on("conn-prepare", (data) => {
   //   const { connUserSocketId } = data;
