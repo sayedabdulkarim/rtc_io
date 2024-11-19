@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import Avatar from "../../../../shared/components/Avatar";
+import { joinRoom } from "../../../../realtimeCommunication/roomHandler";
 // import Avatar from "../../shared/components/Avatar";
 // import * as roomHandler from "../../realtimeCommunication/roomHandler";
 
@@ -13,9 +14,10 @@ const ActiveRoomButton = ({
 }) => {
   const handleJoinActiveRoom = () => {
     console.log("joinRoom called");
-    // if (amountOfParticipants < 4) {
-    //   roomHandler.joinRoom(roomId);
-    // }
+    if (amountOfParticipants < 4) {
+      joinRoom(roomId);
+      // roomHandler.joinRoom(roomId);
+    }
   };
 
   const activeRoomButtonDisabled = amountOfParticipants > 3;

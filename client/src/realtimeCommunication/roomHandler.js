@@ -106,6 +106,20 @@ export const updateActiveRooms = (data, getState, dispatch) => {
 //   webRTCHandler.getLocalStreamPreview(audioOnly, successCalbackFunc);
 // };
 
+export const joinRoom = (roomId) => {
+  console.log(roomId, " joinRoom from room handler");
+  const successCalbackFunc = () => {
+    store.dispatch(setRoomDetails({ roomId }));
+    store.dispatch(openRoom(false, true));
+    const audioOnly = store.getState().roomReducer.audioOnly;
+    store.dispatch(setIsUserJoinedWithOnlyAudio(audioOnly));
+    socketConnection.joinRoom({ roomId });
+  };
+
+  const audioOnly = store.getState().roomReducer.audioOnly;
+  webRTCHandler.getLocalStreamPreview(audioOnly, successCalbackFunc);
+};
+
 export const leaveRoom = (dispatch, getState) => {
   const roomId = getState.roomDetails.roomId;
 
