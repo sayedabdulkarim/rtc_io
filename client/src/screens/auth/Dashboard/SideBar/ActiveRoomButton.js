@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import Avatar from "../../../../shared/components/Avatar";
 import { joinRoom } from "../../../../realtimeCommunication/roomHandler";
+import { useDispatch } from "react-redux";
 // import Avatar from "../../shared/components/Avatar";
 // import * as roomHandler from "../../realtimeCommunication/roomHandler";
 
@@ -12,10 +13,12 @@ const ActiveRoomButton = ({
   amountOfParticipants,
   isUserInRoom,
 }) => {
+  const dispatch = useDispatch();
+
   const handleJoinActiveRoom = () => {
     console.log("joinRoom called");
     if (amountOfParticipants < 4) {
-      joinRoom(roomId);
+      joinRoom(roomId, dispatch);
       // roomHandler.joinRoom(roomId);
     }
   };

@@ -1,5 +1,6 @@
 // import store from "../store/store";
 // import { setLocalStream, setRemoteStreams } from "../store/actions/roomActions";
+import store from "../store";
 import Peer from "simple-peer";
 import * as socketConnection from "./socketConnection";
 import { setLocalStream, setRemoteStreams } from "../slices/room/roomSlice";
@@ -52,12 +53,15 @@ export const getLocalStreamPreview = (
 
 let peers = {};
 
-export const prepareNewPeerConnection = (
-  connUserSocketId,
-  isInitiator,
-  getState
-) => {
-  const localStream = getState.localStream;
+export const prepareNewPeerConnection = (connUserSocketId, isInitiator) => {
+  // const audioOnly = store.getState().roomReducer.audioOnly;
+  const localStream = store.getState().roomReducer.localStream;
+  console.log(
+    localStream,
+    connUserSocketId,
+    isInitiator,
+    " prepareNewPeerConnection hello"
+  );
 
   if (isInitiator) {
     console.log("preparing new peer connection as initiator");
@@ -98,11 +102,14 @@ export const handleSignalingData = (data) => {
   }
 };
 
-const addNewRemoteStream = (remoteStream, getState, dispatch) => {
-  const remoteStreams = getState.remoteStreams;
+const addNewRemoteStream = (remoteStream) => {
+  console.log(remoteStream, " addNewRemoteStream hello");
+  // const remoteStreams = getState.remoteStreams;
+  const remoteStreams = store.getState().roomReducer.remoteStreams;
   const newRemoteStreams = [...remoteStreams, remoteStream];
 
-  dispatch(setRemoteStreams(newRemoteStreams));
+  store.dispatch(setRemoteStreams(newRemoteStreams));
+  // dispatch(setRemoteStreams(newRemoteStreams));
 };
 
 export const closeAllConnections = () => {
@@ -115,7 +122,7 @@ export const closeAllConnections = () => {
   });
 };
 
-export const handleParticipantLeftRoom = (data, dispatch, getState) => {
+export const handleParticipantLeftRoom = (data) => {
   const { connUserSocketId } = data;
 
   if (peers[connUserSocketId]) {
@@ -123,13 +130,15 @@ export const handleParticipantLeftRoom = (data, dispatch, getState) => {
     delete peers[connUserSocketId];
   }
 
-  const remoteStreams = getState.remoteStreams;
+  // const remoteStreams = getState.remoteStreams;
+  const remoteStreams = store.getState().roomReducer.remoteStreams;
 
   const newRemoteStreams = remoteStreams.filter(
     (remoteStream) => remoteStream.connUserSocketId !== connUserSocketId
   );
 
-  dispatch(setRemoteStreams(newRemoteStreams));
+  // dispatch(setRemoteStreams(newRemoteStreams));
+  store.dispatch(setRemoteStreams(newRemoteStreams));
 };
 
 export const switchOutgoingTracks = (stream) => {

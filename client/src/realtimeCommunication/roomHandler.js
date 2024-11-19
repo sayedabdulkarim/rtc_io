@@ -106,7 +106,7 @@ export const updateActiveRooms = (data, getState, dispatch) => {
 //   webRTCHandler.getLocalStreamPreview(audioOnly, successCalbackFunc);
 // };
 
-export const joinRoom = (roomId) => {
+export const joinRoom = (roomId, dispatch) => {
   console.log(roomId, " joinRoom from room handler");
   const successCalbackFunc = () => {
     store.dispatch(setRoomDetails({ roomId }));
@@ -117,7 +117,7 @@ export const joinRoom = (roomId) => {
   };
 
   const audioOnly = store.getState().roomReducer.audioOnly;
-  webRTCHandler.getLocalStreamPreview(audioOnly, successCalbackFunc);
+  webRTCHandler.getLocalStreamPreview(dispatch, audioOnly, successCalbackFunc);
 };
 
 export const leaveRoom = (dispatch, getState) => {
