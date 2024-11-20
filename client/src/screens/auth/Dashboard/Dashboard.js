@@ -30,6 +30,8 @@ const Dashboard = () => {
     isUserInRoom,
     roomDetails,
     activeRooms,
+    localStream,
+    remoteStreams,
   } = useSelector((state) => state.roomReducer);
   const dispatch = useDispatch();
 
@@ -47,16 +49,18 @@ const Dashboard = () => {
         onClick={() =>
           console.log(
             {
+              localStream,
+              remoteStreams,
               // pendingFriendsInvitations,
-              friends,
+              // friends,
               // chosenChatDetails,
               // chatType,
               // messages,
-              roomDetails,
-              audioOnly,
-              isUserInRoom,
-              isUserRoomCreator,
-              activeRooms,
+              // roomDetails,
+              // audioOnly,
+              // isUserInRoom,
+              // isUserRoomCreator,
+              // activeRooms,
             },
             " hh"
           )

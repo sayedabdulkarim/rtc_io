@@ -1,5 +1,3 @@
-// import store from "../store/store";
-// import { setLocalStream, setRemoteStreams } from "../store/actions/roomActions";
 import store from "../store";
 import Peer from "simple-peer";
 import * as socketConnection from "./socketConnection";
@@ -42,7 +40,8 @@ export const getLocalStreamPreview = (
   navigator.mediaDevices
     .getUserMedia(constraints)
     .then((stream) => {
-      dispatch(setLocalStream(stream));
+      console.log(stream, " sss");
+      store.dispatch(setLocalStream(stream));
       callbackFunc();
     })
     .catch((err) => {

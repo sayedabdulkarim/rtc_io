@@ -28,6 +28,7 @@ const roomSlice = createSlice({
       state.activeRooms = action.payload;
     },
     setLocalStream: (state, action) => {
+      console.log(action.payload, " payyy");
       state.localStream = action.payload;
     },
     setAudioOnly: (state, action) => {
