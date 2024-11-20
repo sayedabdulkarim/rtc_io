@@ -121,24 +121,26 @@ export const joinRoom = (roomId, dispatch) => {
 };
 
 export const leaveRoom = (dispatch, getState) => {
-  const roomId = getState.roomDetails.roomId;
+  // const roomId = getState.roomDetails.roomId;
+  const roomId = store.getState().roomReducer.roomDetails.roomId;
 
-  const localStream = getState.localStream;
+  const localStream = store.getState().roomReducer.localStream;
   if (localStream) {
     localStream.getTracks().forEach((track) => track.stop());
-    dispatch(setLocalStream(null));
+    store.dispatch(setLocalStream(null));
   }
 
-  const screenSharingStream = getState.screenSharingStream;
+  // const screenSharingStream = getState.screenSharingStream;
+  const screenSharingStream = store.getState().roomReducer.screenSharingStream;
   if (screenSharingStream) {
     screenSharingStream.getTracks().forEach((track) => track.stop());
-    dispatch(setScreenSharingStream(null));
+    store.dispatch(setScreenSharingStream(null));
   }
 
-  dispatch(setRemoteStreams([]));
+  store.dispatch(setRemoteStreams([]));
   webRTCHandler.closeAllConnections();
 
   socketConnection.leaveRoom({ roomId });
-  dispatch(setRoomDetails(null));
-  dispatch(openRoom(false, false));
+  store.dispatch(setRoomDetails(null));
+  store.dispatch(openRoom(false, false));
 };
