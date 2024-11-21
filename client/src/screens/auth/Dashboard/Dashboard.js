@@ -45,7 +45,7 @@ const Dashboard = () => {
 
   return (
     <Wrapper>
-      <button
+      {/* <button
         onClick={() =>
           console.log(
             {
@@ -67,7 +67,7 @@ const Dashboard = () => {
         }
       >
         hello
-      </button>
+      </button> */}
       <SideBar />
       <FriendsSideBar />
       <Messenger />
