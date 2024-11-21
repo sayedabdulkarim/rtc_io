@@ -4,11 +4,13 @@ import MenuItem from "@mui/material/MenuItem";
 import { IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { logoutUser } from "../../../../slices/auth/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setAudioOnly } from "../../../../slices/room/roomSlice";
 
 export default function BasicMenu() {
   //misc
   const dispatch = useDispatch();
+  const { audioOnly } = useSelector((state) => state.roomReducer);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -18,6 +20,10 @@ export default function BasicMenu() {
   };
   const handleMenuClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleAudioOnlyChange = () => {
+    dispatch(setAudioOnly(!audioOnly));
   };
 
   return (
@@ -35,6 +41,9 @@ export default function BasicMenu() {
         }}
       >
         <MenuItem onClick={() => dispatch(logoutUser())}>Logout</MenuItem>
+        <MenuItem onClick={handleAudioOnlyChange}>
+          {audioOnly ? "Audio Only Enabled" : "Audio Only Disabled"}
+        </MenuItem>
       </Menu>
     </div>
   );

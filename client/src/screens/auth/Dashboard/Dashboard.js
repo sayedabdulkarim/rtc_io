@@ -57,7 +57,7 @@ const Dashboard = () => {
               // chatType,
               // messages,
               // roomDetails,
-              // audioOnly,
+              audioOnly,
               // isUserInRoom,
               // isUserRoomCreator,
               // activeRooms,

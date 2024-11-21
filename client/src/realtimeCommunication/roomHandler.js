@@ -40,7 +40,8 @@ export const createNewRoom = (dispatch, getState) => {
     dispatch(openRoom({ isUserInRoom: true, isUserRoomCreator: true }));
 
     //TODO: grab getState from selector
-    const audioOnly = getState.audioOnly;
+    // const audioOnly = getState.audioOnly;
+    const audioOnly = store.getState().roomReducer.audioOnly;
     dispatch(setIsUserJoinedWithOnlyAudio(audioOnly));
 
     // Trigger socket connection to create a new room
@@ -48,7 +49,8 @@ export const createNewRoom = (dispatch, getState) => {
   };
 
   // Get the audio-only setting from the store
-  const audioOnly = getState.audioOnly;
+  // const audioOnly = getState.audioOnly;
+  const audioOnly = store.getState().roomReducer.audioOnly;
 
   // Start the local stream preview
   webRTCHandler.getLocalStreamPreview(dispatch, audioOnly, successCallbackFunc);
